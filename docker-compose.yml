@@ -1,0 +1,21 @@
+version: "3"
+services:
+    mongo_infocinemas:
+        image: mongo:latest
+        container_name: mongodb
+        restart: unless-stopped
+        ports:
+            - "27017:27017"
+        volumes:
+        - "/data/db"
+    flask:
+      build: .
+      container_name: flask
+      image: digitalocean.com/flask-python:latest
+      depends_on: 
+          - mongo_infocinemas
+      command: python -u app.py
+      ports: 
+          - "5000:5000"
+      links:
+          - mongo_infocinemas
