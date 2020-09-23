@@ -1,0 +1,47 @@
+{% extends "base.html" %}    
+{% block head %}
+    <title> Σύνδεση </title>
+{% endblock head %}
+{% block body %}
+    <a href="{{ url_for('index') }}"> Σπίτι &gt </a> <a href="{{ url_for('login') }}"> Σύνδεση </a>
+    <center>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <br>
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> Σύνδεση στην Υπηρεσία</legend>
+            <div class="form-group"> 
+                {{ form.email.label(class="form-control-label") }}
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.email.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group"> 
+                {{ form.passw.label(class="form-control-label") }}
+                {% if form.passw.errors %}
+                    {{ form.passw(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.passw.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.passw(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            {{ form.remember.label }} {{ form.remember() }}
+            <div class="form-submit">
+                {{ form.submit(class="btn btn-outline-info")}}
+            </div>
+        </fieldset>
+        Δεν έχεις λογαριασμό; Κάνε εγγραφή <a href="/register"> εδώ </a>
+    </form>
+    </center>
+    {% endblock body%}

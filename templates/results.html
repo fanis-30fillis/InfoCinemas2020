@@ -1,0 +1,31 @@
+{% extends "base.html" %}    
+{% block head %}
+    <title> Αποτελέσματα Αναζήτησης </title>
+{% endblock head %}
+{% block body %}
+    <a href="{{ url_for('index') }}"> Σπίτι &gt </a> <a href="{{ url_for('search_movie') }}"> Εύρεση Τάινίας &gt </a> <a href="{{ url_for('results') }}"> Αποτελέσματα  </a>
+    <form method="post">
+    {% if data != "" %}
+        {% set cnt = 0 %}
+        {% for item in data %}
+            <br>
+            Τίτλος Ταινίας: {{ item.title }}
+            <br>
+            Έτος Ταινίας: {{ item.year }}
+            <br>
+            Περιγραφή Ταινίας: {{ item.desc }}
+            <br>
+            Ημέρα Προβολής: {{ item["timedate"].day~"/"~item["timedate"].month~"/"~item["timedate"].year }}
+            <br>
+            Ώρα Προβολής: {{ item["timedate"].hour~":"~item["timedate"].minute }}
+            <br>
+            Εισιτήρια Προβολής: {{ item.tickets }}
+            <br>
+            {% set cnt = cnt + 1 %}
+            {% if item.tickets | int is gt(0) %}
+                <a href="{{ url_for('reserve', data=item)}}"> Κράτηση Εισιτηρίων</a>
+            {% endif %}
+            <hr>
+        {% endfor %}
+    {% endif %}
+{% endblock body %}

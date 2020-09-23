@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head> <title> Αγορά Εισιτηρίου </title> </head>
+    <body>
+        <form method="post">
+            {{ form.hidden_tag() }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.title.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            <br>
+            {{ form.submit() }}
+        </form>
+    </body>
+</html>
+

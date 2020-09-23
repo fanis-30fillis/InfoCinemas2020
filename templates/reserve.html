@@ -1,0 +1,30 @@
+{% extends "base.html" %}    
+{% block head %}
+    <title> Κράτηση Εισιτηρίων </title>
+{% endblock head %}
+{% block body %}
+    <a href="{{ url_for('index') }}"> Σπίτι &gt </a> <a href="{{ url_for('search_movie') }}"> Εύρεση Τάινίας &gt </a> <a href="{{ url_for('results') }}"> Αποτελέσματα &gt </a> <a href="{{ url_for('reserve') }}"> Κράτηση </a>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> Κράτηση Εισιτηρίων </legend>
+            <div class="form-group"> 
+                {{ form.number.label(class="form-control-label") }}
+                {% if form.number.errors %}
+                    {{ form.number(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.number.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{ form.number(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            </fieldset>
+            <div class="form-submit">
+                {{ form.submit(class="btn btn-outline-info")}}
+            </div>
+        </form>
+{% endblock body %}
+

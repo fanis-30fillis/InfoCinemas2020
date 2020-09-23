@@ -1,0 +1,82 @@
+{% extends "base.html" %}    
+{% block head %}
+    <title> Ενημέρωση Ταινίας </title>
+{% endblock head %}
+{% block body %}
+    <a href="{{ url_for('admin_index') }}"> Σπίτι &gt </a> <a href="{{ url_for('update') }}"> Ενημέρωση Τάινίας &gt</a> <a href="{{ url_for('update_results') }}"> Επιλογή Ταινίας προς ενημέρωση </a><a href="{{ url_for('update_movie') }}"> Ενημέρωση Ταινίας </a>
+
+    <form method="post">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> Ενημέρωση Ταινίας </legend>
+            {{ form.hidden_tag() }}
+            <div class="form-group"> 
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.title.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group"> 
+                {{ form.year.label(class="form-control-label") }}
+                {% if form.year.errors %}
+                    {{ form.year(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.year.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.year(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group"> 
+                {{ form.desc.label(class="form-control-label") }}
+                {% if form.desc.errors %}
+                    {{ form.desc(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.desc.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.desc(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group"> 
+                {{ form.timedate.label(class="form-control-label") }}
+                {% if form.timedate.errors %}
+                    {{ form.timedate(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.timedate.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.timedate(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group"> 
+                {{ form.tickets.label(class="form-control-label") }}
+                {% if form.tickets.errors %}
+                    {{ form.tickets(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.tickets.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.tickets(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-submit">
+                {{ form.submit(class="btn btn-outline-info")}}
+            </div>
+        </fieldset>
+    </form>
+{% endblock body %}

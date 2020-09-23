@@ -1,0 +1,29 @@
+{% extends "base.html" %}    
+{% block head %}
+    <title> Διαγραφή Ταινίας </title>
+{% endblock head %}
+{% block body %}
+    <a href="{{ url_for('admin_index') }}"> Σπίτι &gt </a> <a href="{{ url_for('reset') }}"> Διαγραφή Ταινίας </a>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> Διαγραφή Ταινίας </legend>
+            <div class="form-group"> 
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback"> 
+                            {% for error in form.title.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-submit">
+                {{ form.submit(class="btn btn-outline-info")}}
+            </div>
+        </fieldset>
+    </form>
+{% endblock body %}
