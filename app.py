@@ -18,7 +18,7 @@ users = infocinemas["users"]
 movies = infocinemas["movies"]
 
 # Αν δεν υπάρχει διαχειριστής στο σύστημα
-if users.find_one({"email":"admin@site.com"}) is None:
+if users.find_one({"is_admin":"False"}) is None:
     # εισάγει έναν
     users.insert_one({"name":"admin","email":"admin@site.com",
             "movies_seen":[], "passw":"admin", "is_admin":True})
